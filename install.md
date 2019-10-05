@@ -68,20 +68,6 @@ yay安装可以不用加`sudo`
 
 
 
-### 更换终端
-
-使用aur自带的`oh-my-zsh-git`一键安装
-
-```bash
-sudo pacman -S oh-my-zsh-git
-cp /usr/share/oh-my-zsh/zshrc ~/.zshrc #ohmyzsh配置文件
-chsh -s /bin/zsh #替换默认shell
-```
-
-以上配置在下次登录账户是生效
-
-
-
 ### 配置Git
 
 较新版本中已经自带`Git`, 若没有可以使用`sudo pacman -S git`安装后进行配置
@@ -91,6 +77,7 @@ chsh -s /bin/zsh #替换默认shell
 ```bash
 git config --global user.name "Lin Yang"
 git config --global user.email 'geekya215@gmail.com'
+
 ```
 
 
@@ -113,6 +100,7 @@ git config --global https.proxy
 # 删除代理
 git config --global -unset http.proxy
 git config --global -unset https.proxy
+
 ```
 
 
@@ -121,6 +109,7 @@ git config --global -unset https.proxy
 
 ```bash
 ssh-keygen -t rsa -b 4096 -C "geekya215@gmail.com"
+
 ```
 
 在`~/.ssh`目录下会生成`id_rsa`,`id_rsa.pub`两个文件, 接下来的配置可参考github官方教程
@@ -134,6 +123,7 @@ github下载`electron-ssr-0.2.6.pacman`, 进入下载目录执行以下命令
 ```bash
 chmod +x electron-ssr-0.2.6.pacman
 sudo pacman -U electron-ssr-0.2.6.pacman
+
 ```
 
 
@@ -144,6 +134,7 @@ github下载`SwtichOmega`插件, 修改后缀为tar, 解压后在chrome中的插
 
 ```
 socks5 127.0.0.1 1080 
+
 ```
 
 完成后选择proxy模式即可科学上网
@@ -176,8 +167,56 @@ yay -S ranger # 文件管理
 yay -S bat # 文本查看,支持语法高亮, Git集成, 定制化主题
 yay -S neofetch # 终端查看系统配置
 yay -S htop # 进程查看工具
+yay -S figlet # 以字符画形式显示文本
+yay -S screenkey # 将键盘的点击回显到屏幕上
+yay -S neovim # vim 增强版
 
 # 其他
 yay -S google-chrome-stable # 404浏览器
 yay -S typora # markdown编辑
+
 ```
+
+
+
+### 调优
+
+更改`yarn`和`npm`的源
+
+```bash
+yarn config set registry https://registry.npm.taobao.org
+npm config set registry https://registry.npm.taobao.org
+
+```
+
+
+
+### 美化终端
+
+使用aur自带的`oh-my-zsh-git`一键安装
+
+```bash
+sudo pacman -S oh-my-zsh-git
+cp /usr/share/oh-my-zsh/zshrc ~/.zshrc #ohmyzsh配置文件
+chsh -s /bin/zsh #替换默认shell
+
+```
+
+更换主题为powerlevel10k-pure
+
+```bash
+git clone https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
+echo 'source ~/powerlevel10k/config/p10k-pure.zsh' >>! ~/.zshrc
+
+```
+
+更换终端配色
+
+```bash
+curl -O https://raw.githubusercontent.com/miedzinski/konsole-snazzy/master/snazzy.colorscheme ~/.local/share/konsole
+
+```
+
+在终端配置中更改主题配色为`snazzy`
+
