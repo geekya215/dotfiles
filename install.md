@@ -170,6 +170,7 @@ yay -S htop # 进程查看工具
 yay -S figlet # 以字符画形式显示文本
 yay -S screenkey # 将键盘的点击回显到屏幕上
 yay -S neovim # vim 增强版
+yay -S onefetch # display git repository infomation on terminal
 
 # 其他
 yay -S google-chrome-stable # 404浏览器
