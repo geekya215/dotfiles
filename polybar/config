@@ -207,7 +207,8 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 
-format = 💫 <label>
+;format = 💫 <label>
+format = 🍪 <label>
 ;format-prefix = " "
 ;format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
@@ -218,7 +219,8 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 
-format = 👀 <label>
+;format = 👀 <label>
+format = 🍬 <label>
 ;format-prefix = " "
 ;format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
@@ -274,7 +276,8 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format = 🕓 <label>
+;format = 🕓 <label>
+format = 📅 <label>
 ;format-prefix = 
 ;format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
@@ -345,7 +348,8 @@ full-at = 99
 format-charging = ⚡ <label-charging>
 format-charging-underline = #ffb52a
 
-format-discharging = 🔋 <label-discharging>
+;format-discharging = 🔋 <label-discharging>
+format-discharging = 🍭 <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 label-charging = %percentage%%
