@@ -30,15 +30,17 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-exec --no-startup-id picom -b
+# --experimental-backends for blur backend
+# may be cause unknow problem
+exec --no-startup-id picom -b --experimental-backends
 
-# Set wallpapaer by feh
+# set wallpapaer by feh
 exec --no-startup-id feh --bg-scale ~/Wallpaper/noel.png
 
-# Autostart clash proxy
+# autostart clash proxy
 exec_always --no-startup-id $HOME/.config/clash/launch.sh
 
-# Launch Polybar
+# launch polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Use pactl to adjust volume in PulseAudio.
@@ -161,8 +163,10 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
+# make window no border
 new_window 1pixel
+
+# resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
