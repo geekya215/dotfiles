@@ -35,7 +35,7 @@ height = 24
 ;offset-y = 1%
 radius = 0
 fixed-center = false
-
+`
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -57,8 +57,8 @@ font-1 = "Noto Color Emoji:fontformat=truetype:style=Regular:scale=10;2"
 ;font-2 = siji:pixelsize=10;1
 
 modules-left = i3
-modules-center = 
-modules-right = wlan cpu memory battery date 
+modules-center = xwindow
+modules-right = wlan cpu memory battery alsa date 
 
 tray-position = right
 tray-padding = 2
@@ -80,7 +80,8 @@ cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+;label = %title:0:30:...%
+label = %title%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -314,30 +315,42 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 [module/alsa]
 type = internal/alsa
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+headphone-mixer = Headphone
+headphone-id = 20
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-underline = #6eeb34
+label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
+; format-muted-prefix = " "
+format-muted-underline = #6eeb34
+format-muted-foreground = ${colors.foreground}
+label-muted = 🔇 muted
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+
+ramp-headphones-0 = 🎧
+ramp-headphones-1 = 🎧
+
+;bar-volume-width = 10
+;bar-volume-foreground-0 = #55aa55
+;bar-volume-foreground-1 = #55aa55
+;bar-volume-foreground-2 = #55aa55
+;bar-volume-foreground-3 = #55aa55
+;bar-volume-foreground-4 = #55aa55
+;bar-volume-foreground-5 = #f5a70a
+;bar-volume-foreground-6 = #ff5555
+;bar-volume-gradient = false
+;bar-volume-indicator = |
+;bar-volume-indicator-font = 2
+;bar-volume-fill = ─
+;bar-volume-fill-font = 2
+;bar-volume-empty = ─
+;bar-volume-empty-font = 2
+;bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
