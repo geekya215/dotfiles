@@ -46,7 +46,7 @@ set showcmd
 " indent
 set tabstop=4
 set shiftwidth=4
-set softtabstop=4
+" set softtabstop=4
 set expandtab
 set smartindent
 
@@ -65,7 +65,10 @@ set smartcase
 " set textwidth=80
 " set colorcolumn=80
 
-" key mapping 
+
+"""""""""""""""""""""""
+"     key mapping     "
+"""""""""""""""""""""""
 nmap <CR> o<Esc>k
 nmap <space> O<Esc>j
 
