@@ -1,0 +1,16 @@
+set surround
+let mapleader=" "
+noremap ; :
+map Q :q<CR>
+map S :w<CR>
+map R :source ~/.ideavimrc<CR>
+noremap J 5j
+noremap K 5k
+noremap <leader>j :tabp<CR>
+noremap <leader>k :tabn<CR>
+noremap <leader>h <C-w>h
+noremap <leader>l <C-w>l
+noremap <leader>S :action MoveTabRight<CR>
+noremap <leader>s :vs<CR>
+
+noremap F :action ReformatCode<CR>
