@@ -104,6 +104,8 @@ noremap <leader>mk :+tabmove<CR>
 " load plugin
 call plug#begin('~/.vim/plugged')
 
+Plug 'mhinz/vim-startify'
+
 Plug 'vim-airline/vim-airline'
 
 Plug 'yggdroot/indentline'
@@ -114,15 +116,54 @@ Plug 'preservim/nerdtree'
 
 Plug 'connorholyday/vim-snazzy'
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+Plug 'airblade/vim-gitgutter'
+
+Plug 'mg979/vim-xtabline'
+
 call plug#end()
 
 " indentline plugin config section
-let g:indentLine_color_term=241
+let g:indentLine_color_term=255
 let g:indentLine_enabled=1
 let g:indentLine_leadingSpaceEnabled=1
 let g:indentLine_leadingSpaceChar='·'
 
 " color snazzy config section
 let g:lightline = { 'colorscheme': 'snazzy' }
-let g:SnazzyTransparent = 1
+let g:SnazzyTransparent = 0
 colorscheme snazzy
+
+" nerdtree config section
+let g:NERDTreeShowHidden=1
+noremap <silent> <C-n> :NERDTreeToggle<CR>
+
+" nerdtree git config
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+" vim-devicons config section
+let g:airline_powerline_fonts = 0
+
+" coc config
+let g:coc_global_extensions = ['coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-emmet', 'coc-highlight', 'coc-snippets', 'coc-pairs', 'coc-lists']
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"

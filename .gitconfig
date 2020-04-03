@@ -2,7 +2,7 @@
 	name = Lin Yang
 	email = geekya215@gmail.com
 [core]
-	editor = vim
+	editor = nvim
 [commit]
 	gpgsign = true
 [color]
