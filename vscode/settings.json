@@ -1,0 +1,195 @@
+{
+    "workbench.colorTheme": "Xcode Partial (Dark)",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.fontFamily": "Hack Nerd Font",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "breadcrumbs.enabled": false,
+    "editor.minimap.enabled": false,
+    "window.menuBarVisibility": "toggle",
+    "workbench.statusBar.visible": false,
+    "workbench.activityBar.visible": false,
+    "editor.fontSize": 16,
+    // vim config section
+    "vim.leader": "<space>",
+    "vim.camelCaseMotion.enable": true,
+    // "vim.insertModeKeyBindings": [
+    //     {
+    //         "before": [
+    //             "j",
+    //             "k"
+    //         ],
+    //         "after": [
+    //             "<Esc>"
+    //         ]
+    //     }
+    // ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "u"
+            ],
+            "commands": [
+                "undo"
+            ]
+        },
+        {
+            "before": [
+                "U"
+            ],
+            "commands": [
+                "Redo"
+            ]
+        },
+        {
+            "before": [
+                ":"
+            ],
+            "commands": [
+                "workbench.action.showCommands"
+            ]
+        },
+        {
+            "before": [
+                ";"
+            ],
+            "after": [
+                ":"
+            ]
+        },
+        {
+            "before": [
+                "J"
+            ],
+            "after": [
+                "5",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "after": [
+                "5",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "Q"
+            ],
+            "commands": [
+                ":q"
+            ]
+        },
+        {
+            "before": [
+                "<C-q>"
+            ],
+            "commands": [
+                "workbench.action.closeAllEditors"
+            ]
+        },
+        {
+            "before": [
+                "S"
+            ],
+            "commands": [
+                "workbench.action.files.save"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "s"
+            ],
+            "commands": [
+                "workbench.action.splitEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "h"
+            ],
+            "commands": [
+                "workbench.action.focusPreviousGroup"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "l"
+            ],
+            "commands": [
+                "workbench.action.focusNextGroup"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "H"
+            ],
+            "commands": [
+                "workbench.action.moveEditorToPreviousGroup"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "L"
+            ],
+            "commands": [
+                "workbench.action.moveEditorToNextGroup"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "j"
+            ],
+            "commands": [
+                "workbench.action.previousEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "k"
+            ],
+            "commands": [
+                "workbench.action.nextEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "m",
+                "j"
+            ],
+            "commands": [
+                "workbench.action.moveEditorLeftInGroup"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "m",
+                "k"
+            ],
+            "commands": [
+                "workbench.action.moveEditorRightInGroup"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "M"
+            ],
+            "commands": [
+                "editor.action.toggleMinimap"
+            ]
+        },
+    ],
+}

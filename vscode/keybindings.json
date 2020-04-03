@@ -1,0 +1,31 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "alt+e",
+    "command": "workbench.action.focusActiveEditorGroup"
+  },
+  {
+    "key": "alt+a",
+    "command": "workbench.action.toggleActivityBarVisibility"
+  },
+  {
+    "key": "alt+s",
+    "command": "workbench.action.toggleStatusbarVisibility"
+  },
+  {
+    "key": "alt+w",
+    "command": "workbench.action.focusSideBar"
+  },
+  {
+    "key": "ctrl+0",
+    "command": "-workbench.action.focusSideBar"
+  },
+  {
+    "key": "alt+q",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
+  }
+]
