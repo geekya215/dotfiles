@@ -10,6 +10,7 @@
     "workbench.statusBar.visible": false,
     "workbench.activityBar.visible": false,
     "editor.fontSize": 16,
+    "keyboard.dispatch": "keyCode",
     // vim config section
     "vim.leader": "<space>",
     "vim.camelCaseMotion.enable": true,
