@@ -28,7 +28,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # --experimental-backends for blur backend may be cause unknow problem
 exec --no-startup-id picom -b --experimental-backends
@@ -41,6 +41,9 @@ exec_always --no-startup-id $HOME/.config/clash/launch.sh
 
 # launch polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# map caps lock to escape
+exec_always --no-startup-id setxkbmap -option caps:escape
 
 # launch albert
 exec_always --no-startup-id albert
