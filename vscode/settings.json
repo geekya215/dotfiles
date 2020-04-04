@@ -11,20 +11,10 @@
     "workbench.activityBar.visible": false,
     "editor.fontSize": 16,
     "keyboard.dispatch": "keyCode",
+    "workbench.editor.enablePreview": false,
     // vim config section
     "vim.leader": "<space>",
     "vim.camelCaseMotion.enable": true,
-    // "vim.insertModeKeyBindings": [
-    //     {
-    //         "before": [
-    //             "j",
-    //             "k"
-    //         ],
-    //         "after": [
-    //             "<Esc>"
-    //         ]
-    //     }
-    // ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
