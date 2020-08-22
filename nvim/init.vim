@@ -16,23 +16,6 @@ if has("autocmd")
   filetype plugin indent on
 endif
 
-" change cursor shape in different modes
-let &t_SI="\<Esc>]50;CursorShape=1\x7"
-let &t_SR="\<Esc>]50;CursorShape=2\x7"
-let &t_EI="\<Esc>]50;CursorShape=0\x7"
-" fix cursor toggle delay problem when exit insert mode
-set ttimeout
-set ttimeoutlen=1
-
-" uncomment to display space, tab and lf symbol
-" set list
-" set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
-
-set ttyfast
-
-" toggle cursorline in different mod
-:autocmd InsertEnter,InsertLeave * set cul!
-
 " basic
 set autoread
 set encoding=utf-8
@@ -41,12 +24,11 @@ set scrolloff=5
 set sidescrolloff=5
 set wrap
 set wildmenu
-set showcmd
+set cursorline
 
 " indent
 set tabstop=4
 set shiftwidth=4
-" set softtabstop=4
 set expandtab
 set smartindent
 
@@ -61,33 +43,16 @@ set incsearch
 set ignorecase
 set smartcase
 
-" other
-" set textwidth=80
-" set colorcolumn=80
-
-" key mapping 
+" key mapping
 let mapleader=" "
 noremap ; :
-imap jk <Esc>
 noremap J 5j
 noremap K 5k
 
 noremap S :w<CR>
-noremap R :source ~/.config/nvim/init.vim<CR>
 noremap Q :q<CR>
 noremap <C-q> :qa<CR>
-
-noremap <leader>( i()<Esc>i
-noremap <leader>) i()
-noremap <leader>{ i{}<Esc>i
-noremap <leader>} i{}
-noremap <leader>[ i[]<Esc>i
-noremap <leader>] i[]
-noremap <leader>< i<><Esc>i
-noremap <leader>> i<>
-noremap <leader>' i''<Esc>i
-noremap <leader>" i""<Esc>i
-noremap <leader>` i``<Esc>i
+noremap R :source ~/.config/nvim/init.vim<CR>
 
 noremap <leader>s :vs<CR>
 noremap <leader>h <C-w>h
@@ -101,24 +66,33 @@ noremap <leader>k :+tabnext<CR>
 noremap <leader>mj :-tabmove<CR>
 noremap <leader>mk :+tabmove<CR>
 
-" load plugin
 call plug#begin('~/.vim/plugged')
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'mhinz/vim-startify'
 
 Plug 'vim-airline/vim-airline'
 
+Plug 'mg979/vim-xtabline'
+
 Plug 'yggdroot/indentline'
 
-Plug 'tpope/vim-surround' 
+Plug 'liuchengxu/space-vim-dark'
+
+Plug 'leafgarland/typescript-vim'
+
+Plug 'peitalin/vim-jsx-typescript'
+
+Plug 'frazrepo/vim-rainbow'
+
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'mattn/emmet-vim'
+
+Plug 'tpope/vim-surround'
 
 Plug 'preservim/nerdtree'
-
-Plug 'connorholyday/vim-snazzy'
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-Plug 'ryanoasis/vim-devicons'
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
@@ -126,44 +100,42 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 Plug 'airblade/vim-gitgutter'
 
-Plug 'mg979/vim-xtabline'
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
-" indentline plugin config section
-let g:indentLine_color_term=255
-let g:indentLine_enabled=1
-let g:indentLine_leadingSpaceEnabled=1
-let g:indentLine_leadingSpaceChar='·'
+" color scheme
+color space-vim-dark
+set termguicolors
+hi LineNr ctermbg=NONE guibg=NONE
+hi Comment guifg=#5C6370 ctermfg=59
 
-" color snazzy config section
-let g:lightline = { 'colorscheme': 'snazzy' }
-let g:SnazzyTransparent = 0
-colorscheme snazzy
+noremap <C-n> :NERDTreeToggle<CR>
 
-" nerdtree config section
-let g:NERDTreeShowHidden=1
-noremap <silent> <C-n> :NERDTreeToggle<CR>
+let g:rainbow_active = 1
 
-" nerdtree git config
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
+" Make <tab> used for trigger completion, completion confirm, 
+" snippet expand and jump like VSCode.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
-" vim-devicons config section
-let g:airline_powerline_fonts = 0
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" coc config
-let g:coc_global_extensions = ['coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-emmet', 'coc-highlight', 'coc-snippets', 'coc-pairs', 'coc-lists']
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+let g:coc_snippet_next = '<tab>'
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+nmap <leader>f :Prettier<CR>
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
