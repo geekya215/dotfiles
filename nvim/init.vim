@@ -28,6 +28,7 @@ set cursorline
 
 " indent
 set tabstop=4
+set autoindent
 set shiftwidth=4
 set expandtab
 set smartindent
@@ -66,6 +67,20 @@ noremap <leader>k :+tabnext<CR>
 noremap <leader>mj :-tabmove<CR>
 noremap <leader>mk :+tabmove<CR>
 
+" for compile and run cpp
+noremap <F9> :call CompileGcc()<CR>
+noremap <F10> :call Run()<CR>
+
+func! CompileGcc()
+    exec "w"
+    exec "!g++ % -std=c++11 -O2 -o %<"
+endfunc
+
+func! Run() 
+    exec "terminal time ./%<"
+endfunc
+
+" Plug 
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
