@@ -6,43 +6,24 @@ if has("syntax")
   syntax on
 endif
 
-" jump to the last position when reopen file
+" jump to the last position when reopon file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" load indentation rules and plugins according to the detected filetype.
-if has("autocmd")
-  filetype plugin indent on
-endif
-
 " basic
-set autoread
 set encoding=utf-8
-set mouse=a
-set scrolloff=5
-set sidescrolloff=5
-set wrap
-set wildmenu
 set cursorline
+set autoindent
 
 " indent
-set tabstop=4
-set autoindent
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
-set smartindent
 
 " line number
 set number
 set relativenumber
-
-" search
-set showmatch
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
 
 " key mapping
 let mapleader=" "
@@ -52,7 +33,6 @@ noremap K 5k
 
 noremap S :w<CR>
 noremap Q :q<CR>
-noremap <C-q> :qa<CR>
 noremap R :source ~/.config/nvim/init.vim<CR>
 
 noremap <leader>s :vs<CR>
@@ -61,64 +41,40 @@ noremap <leader>l <C-w>l
 map <leader><left> :vertical resize-5<CR>
 map <leader><right> :vertical resize+5<CR>
 
-noremap <leader>n :tabe<CR>
+noremap <leader>t :tabe<CR>
 noremap <leader>j :-tabnext<CR>
 noremap <leader>k :+tabnext<CR>
-noremap <leader>mj :-tabmove<CR>
-noremap <leader>mk :+tabmove<CR>
 
-" for compile and run cpp
-noremap <F9> :call CompileGcc()<CR>
+" compile and run cpp program
+autocmd TermOpen term://* startinsert
+
+noremap <F9> :call Compile()<CR>
 noremap <F10> :call Run()<CR>
 
-func! CompileGcc()
-    exec "w"
-    exec "!g++ % -std=c++11 -O2 -o %<"
+func! Compile()
+  exec "w"
+  exec "!g++ % -std=c++11 -O2 -o %<"
 endfunc
 
-func! Run() 
-    exec "terminal time ./%<"
+func! Run()
+  exec "vs"
+  exec "terminal time ./%<"
 endfunc
 
-" Plug 
+" Plug list
 call plug#begin('~/.vim/plugged')
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-Plug 'mhinz/vim-startify'
-
 Plug 'vim-airline/vim-airline'
-
-Plug 'mg979/vim-xtabline'
-
-Plug 'yggdroot/indentline'
-
 Plug 'liuchengxu/space-vim-dark'
-
-Plug 'leafgarland/typescript-vim'
-
-Plug 'peitalin/vim-jsx-typescript'
-
+Plug 'mhinz/vim-startify'
+Plug 'mg979/vim-xtabline'
 Plug 'frazrepo/vim-rainbow'
-
-Plug 'jiangmiao/auto-pairs'
-
-Plug 'mattn/emmet-vim'
-
 Plug 'tpope/vim-surround'
-
-Plug 'preservim/nerdtree'
-
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'chemzqm/vim-jsx-improve'
 Plug 'airblade/vim-gitgutter'
-
-Plug 'editorconfig/editorconfig-vim'
-
 Plug 'ryanoasis/vim-devicons'
-
 call plug#end()
 
 " color scheme
@@ -127,30 +83,57 @@ set termguicolors
 hi LineNr ctermbg=NONE guibg=NONE
 hi Comment guifg=#5C6370 ctermfg=59
 
-noremap <C-n> :NERDTreeToggle<CR>
+let g:rainbow_active=1
 
-let g:rainbow_active = 1
-
-" Make <tab> used for trigger completion, completion confirm, 
-" snippet expand and jump like VSCode.
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<tab>'
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-nmap <leader>f :Prettier<CR>
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> <leader>d :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+nmap <leader>f :Prettier<CR>
+
+" Open explorer
+nmap <leader>e :CocCommand explorer<CR>
