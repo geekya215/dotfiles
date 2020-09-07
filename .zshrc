@@ -2,17 +2,17 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh
+export ZSH="/home/kasumi/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="ys"
+ZSH_THEME="dracula"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -24,7 +24,7 @@ ZSH_THEME="ys"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
@@ -33,7 +33,7 @@ DISABLE_AUTO_UPDATE="true"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -64,12 +64,13 @@ DISABLE_AUTO_UPDATE="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git vi-mode zsh-syntax-highlighting)
 
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -85,6 +86,22 @@ plugins=(git vi-mode zsh-syntax-highlighting)
 #   export EDITOR='mvim'
 # fi
 
+# Proxy 
+export http_proxy="http://127.0.0.1:7890"
+export https_proxy="http://127.0.0.1:7890"
+
+# change ranger default editor to neovim
+export VISUAL=nvim
+export EDITOR=nvim
+
+# fzf
+export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border'
+export FZF_COMPLETION_TRIGGER='\'
+export FZF_DEFAULT_COMMAND='rg --hidden --files -g '!.git''
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export fzf_preview_cmd='bat --style=numbers --color=always --line-range :500 {}'
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -96,10 +113,9 @@ plugins=(git vi-mode zsh-syntax-highlighting)
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ra="ranger"
+alias s="neofetch"
+alias e="exit"
 
-ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
-fi
-
-source $ZSH/oh-my-zsh.sh
+source ~/.fzf/key-bindings.zsh
+source ~/.fzf/completion.zsh
