@@ -44,6 +44,8 @@ map <leader><right> :vertical resize+5<CR>
 noremap <leader>t :tabe<CR>
 noremap <leader>j :-tabnext<CR>
 noremap <leader>k :+tabnext<CR>
+noremap > >>
+noremap < <<
 
 " compile and run cpp program
 autocmd TermOpen term://* startinsert
