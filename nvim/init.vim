@@ -75,9 +75,23 @@ Plug 'tpope/vim-surround'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'chemzqm/vim-jsx-improve'
+Plug 'voldikss/vim-floaterm'
+Plug 'liuchengxu/vim-which-key'
 Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
+
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+nnoremap <silent> <leader>g :FloatermNew --height=0.8 --width=0.8 --autoclose=2 lazygit<CR>
+tnoremap <silent> <F5> <C-\><C-n>:FloatermKill<CR>
+nnoremap <silent> <F6> :FloatermNew<CR>
+tnoremap <silent> <F6> <C-\><C-n>:FloatermNew<CR>
+nnoremap <silent> <F7> :FloatermPrev<CR>
+tnoremap <silent> <F7> <C-\><C-n>:FloatermPrev<CR>
+nnoremap <silent> <F8> :FloatermNext<CR>
+tnoremap <silent> <F8> <C-\><C-n>:FloatermNext<CR>
+nnoremap <silent> <F12> :FloatermToggle<CR>
+tnoremap <silent> <F12> <C-\><C-n>:FloatermToggle<CR>
 
 " color scheme
 color space-vim-dark
