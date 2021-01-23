@@ -79,7 +79,10 @@ Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-which-key'
 Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
+Plug 'Yggdroot/indentLine'
 call plug#end()
+
+let g:indentLine_fileTypeExclude = ['coc-explorer']
 
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 nnoremap <silent> <leader>g :FloatermNew --height=0.8 --width=0.8 --autoclose=2 lazygit<CR>
