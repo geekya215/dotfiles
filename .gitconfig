@@ -5,9 +5,3 @@
 	editor = nvim
 [commit]
 	gpgsign = true
-[color]
-	ui = auto
-[url "https://github.com/"]
-	insteadOf = gh:
-[url "https://gist.github.com/"]
-	insteadOf = gist:
