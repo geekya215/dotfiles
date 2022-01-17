@@ -1,7 +1,10 @@
 configuration {
+  font: "Cantarell 14";
   modi: [window,run,drun];
   show-icons: true;
   icon-theme: "Papirus" ;
+  disable-history: false;
+  drun-display-format: "{name}";
   drun {
     display-name: "";
   }
@@ -20,14 +23,14 @@ configuration {
   }
 
   timeout {
-      action: "kb-cancel";
-      delay:  0;
+    action: "kb-cancel";
+    delay:  0;
   }
 
   filebrowser {
-      directories-first: true;
-      sorting-method:    "name";
+    directories-first: true;
+    sorting-method:    "name";
   }
 }
 
-@theme "~/.config/rofi/themes/dracula.rasi"
+@theme "./themes/default.rasi"
